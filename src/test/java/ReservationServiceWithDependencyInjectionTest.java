@@ -44,9 +44,9 @@ public class ReservationServiceWithDependencyInjectionTest {
         Assertions.assertEquals(2, customers.size());
         Customer customer1 = customers.get(0);
         Customer customer2 = customers.get(1);
-        Assertions.assertEquals(1, customer1.getRank());
+        Assertions.assertEquals(1, fakeRankingService.findCustomerRank(customer1));
         Assertions.assertEquals("Test1", customer1.getName());
-        Assertions.assertEquals(2, customer2.getRank());
+        Assertions.assertEquals(2, fakeRankingService.findCustomerRank(customer2));
         Assertions.assertEquals("Test2", customer2.getName());
     }
 
@@ -65,9 +65,9 @@ public class ReservationServiceWithDependencyInjectionTest {
         Customer customer1 = customers.get(0);
         Customer customer2 = customers.get(1);
         // as Test2 joined first he should have the first rank
-        Assertions.assertEquals(1, customer1.getRank());
+        Assertions.assertEquals(1, rankingService.findCustomerRank(customer1));
         Assertions.assertEquals("Test2", customer1.getName());
-        Assertions.assertEquals(2, customer2.getRank());
+        Assertions.assertEquals(2, rankingService.findCustomerRank(customer2));
         Assertions.assertEquals("Test1", customer2.getName());
     }
 }
